@@ -33,6 +33,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 
+    @IBAction func OnLogoutButton(sender: AnyObject) {
+        TwitterClient.sharedInstance.logout()
+    }
     /*
     // MARK: - Navigation
 
@@ -62,6 +65,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetViewCell") as! TweetViewCell
         cell.loadCellContents(self.tweets![indexPath.row])
+       // print(self.tweets![indexPath.row])
         return cell
 
     }
@@ -76,4 +80,5 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+   
 }
