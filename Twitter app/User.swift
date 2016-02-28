@@ -16,6 +16,9 @@ class User: NSObject {
     var tagLine: NSString?
     var profileUrl: NSURL?
     var dictionary: NSDictionary?
+    var tweetsCount: Int?
+    var followingCount: Int?
+    var followersCount: Int?
     
     static let userDidLogoutNotification = "UserDidLogout"
     
@@ -24,6 +27,9 @@ class User: NSObject {
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
         tagLine = dictionary["description"] as? String
+        tweetsCount = dictionary["statuses_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
+        followersCount = dictionary["followers_count"] as? Int
         
         let profileUrlString = dictionary["profile_image_url_https"] as? String
         
@@ -33,6 +39,8 @@ class User: NSObject {
     }
     
     static var _currentUser: User?
+    
+    
     
     class var currentUser: User? {
         
