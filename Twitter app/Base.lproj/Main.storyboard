@@ -181,7 +181,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="Bvl-JJ-KWu">
                             <connections>
-                                <segue destination="paX-Hr-wij" kind="push" identifier="" id="l3N-MW-Aem"/>
+                                <segue destination="paX-Hr-wij" kind="push" id="P3w-0q-vnM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -587,10 +587,11 @@
             </objects>
             <point key="canvasLocation" x="1655" y="359"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose View Controller-->
         <scene sceneID="UlD-he-9AU">
             <objects>
-                <viewController id="paX-Hr-wij" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmO-NX-Zkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="paX-Hr-wij" customClass="ComposeViewController" customModule="Twitter_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EAl-OR-tbf"/>
                         <viewControllerLayoutGuide type="bottom" id="PAH-h6-qT6"/>
@@ -598,11 +599,33 @@
                     <view key="view" contentMode="scaleToFill" id="sOQ-Bn-r64">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Tweet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAy-uD-c81">
+                                <rect key="frame" x="14" y="87" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oJE-FF-oVt">
+                                <rect key="frame" x="14" y="116" width="286" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tFt-lg-Pd4"/>
+                    <navigationItem key="navigationItem" id="tFt-lg-Pd4">
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="sGc-Sn-F2Z">
+                            <connections>
+                                <action selector="onTweet:" destination="paX-Hr-wij" id="DoV-I6-J4h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="oJE-FF-oVt" id="bjY-om-0qx"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bmO-NX-Zkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2031" y="359"/>
         </scene>

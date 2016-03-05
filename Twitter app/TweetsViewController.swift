@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
@@ -14,6 +15,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     var tweets : [Tweet]?
     var imageTapped: UIImageView?
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
 
+         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+         tableView.insertSubview(refreshControl, atIndex: 0)
         loadHomeTimeLine()
 
         // Do any additional setup after loading the view.
@@ -43,7 +47,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.performSegueWithIdentifier("ProfileDetail", sender: nil)
     }
     
-    
+    func refreshControlAction(refreshControl: UIRefreshControl){
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        loadHomeTimeLine()
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        self.tableView.reloadData();
+        
+        refreshControl.endRefreshing()
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

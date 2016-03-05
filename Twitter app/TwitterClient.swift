@@ -91,6 +91,24 @@ class TwitterClient: BDBOAuth1SessionManager {
         )
     }
     
+    func updateStatusWithCompletion(status: String, inReplyToStatusId: String? = nil, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        self.POST("1.1/statuses/update.json",
+            parameters: [
+                "status": status,
+                "in_reply_to_status_id": inReplyToStatusId ?? ""
+            ],
+            success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+                let tweet = Tweet(dictionary: response as! NSDictionary)
+                completion(tweet: tweet, error: nil)
+            },
+            failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("error updating status")
+                print(error.localizedDescription)
+                completion(tweet: nil, error: error)
+            }
+        )
+    }
+    
     func verifyAccount(success: (User)->(), failure: (NSError)->()) {
         GET(verifyAccountEndPoint, parameters: nil, progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
